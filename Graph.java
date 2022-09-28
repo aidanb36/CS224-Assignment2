@@ -1,9 +1,11 @@
 // CS224 Fall 2022
 
 import java.util.ArrayList;
-// import java.util.Stack;
+import java.util.Stack;
 // import java.util.Queue;
 // import java.util.LinkedList;
+
+import javax.swing.plaf.TreeUI;
 
 public class Graph {
   ArrayList<Node> nodes;
@@ -41,6 +43,19 @@ public class Graph {
 
   public ArrayList<Node> DFS(Node s) {
     // implement this
+    Stack<Node> stack = new Stack<Node>();
+    stack.push(s);
+    while (!stack.isEmpty()) {
+      Node u = stack.pop();
+      
+      if (u.equals(s) == false){
+        // Not sure how to implement this.  Set Explored[u] = true
+        for (Node v : nodes) {
+          stack.add(v);
+        }
+      }
+    }
+
   } // DFS()
 
   public void findConnectedComponents() {
