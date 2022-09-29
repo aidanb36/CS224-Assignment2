@@ -2,17 +2,18 @@
 
 import java.util.ArrayList;
 import java.util.Stack;
-// import java.util.Queue;
-// import java.util.LinkedList;
+import java.util.Queue;
+import java.util.LinkedList;
 
-// import javax.swing.plaf.TreeUI;
 
 public class Graph {
   ArrayList<Node> nodes;
 
+  // List of nodes already discovered
   public Graph() {
     nodes = new ArrayList<Node>();
   }
+
 
   public void addNode(Node node) {
     for (Node n: this.nodes) {
@@ -24,6 +25,7 @@ public class Graph {
     this.nodes.add(node);
   }
 
+  
   public void addEdge(Node n1, Node n2) {
     // outgoing edge
     int idx1 = this.nodes.indexOf(n1);
@@ -41,20 +43,28 @@ public class Graph {
     n1.addEdge(n2);
   }
 
+  /**
+   * Need to ensure that the if statement and foreach is correct
+   * @param s
+   * @return
+   */
   public ArrayList<Node> DFS(Node s) {
-    // implement this
+    boolean[] visited = new  boolean[nodes.size()];
     Stack<Node> stack = new Stack<Node>();
-    stack.push(s);
+    stack.push(s); 
+
+    // While the stack is not empty, pop a node from the stack
     while (!stack.isEmpty()) {
       Node u = stack.pop();
-      
-      if (u.equals(s) == false){
-        // Not sure how to implement this.  Set Explored[u] = true
-        for (Node v : nodes) {
-          stack.add(v);
-        }
+      if(!visited[u.name]){ // if explored[u] = false then
+          visited[u.name] = true;
       }
-    }
+  
+      for (Node v : nodes) {
+        stack.add(v);
+      }
+      }
+    return nodes;
 
   } // DFS()
 
