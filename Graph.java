@@ -52,6 +52,7 @@ public class Graph {
     boolean[] visited = new  boolean[nodes.size()];
     Stack<Node> stack = new Stack<Node>();
     stack.push(s); 
+    System.out.print(s);
 
     // While the stack is not empty, pop a node from the stack
     while (!stack.isEmpty()) {
@@ -63,12 +64,17 @@ public class Graph {
       for (Node v : nodes) {
         stack.add(v);
       }
-      }
+    }
     return nodes;
 
   } // DFS()
 
   public void findConnectedComponents() {
+    ArrayList<Node> newb = DFS(nodes);
+    for( int i = 0; i < nodes.size(); i++){
+      DFS(nodes);
+    }
+    
     // implement this
   } // findConnectedComponents()
 } // class Graph
