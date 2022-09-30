@@ -70,9 +70,9 @@ public class Graph {
   } // DFS()
 
   public void findConnectedComponents() {
-    ArrayList<Node> newb = DFS(nodes);
     for( int i = 0; i < nodes.size(); i++){
-      DFS(nodes);
+      ArrayList<Node> newb=DFS(nodes.get(i));
+      System.out.print(newb);
     }
     
     // implement this
