@@ -4,12 +4,6 @@
 import java.util.ArrayList;
 import java.util.Stack;
 
-import javax.swing.event.ChangeEvent;
-
-import java.util.Queue;
-import java.util.LinkedList;
-
-
 public class Graph {
   ArrayList<Node> nodes;
 
@@ -49,27 +43,24 @@ public class Graph {
 
   
   public ArrayList<Node> DFS(Node s) {
-    boolean[] visited = new  boolean[this.nodes.size() + 1];
-    Stack<Node> stack = new Stack<Node>();
     ArrayList<Node> returnL = new ArrayList<>();
-
+    boolean[] explored = new  boolean[this.nodes.size() + 1];
+    Stack<Node> stack = new Stack<Node>();
     stack.push(s); 
 
     // While the stack is not empty, pop a node from the stack
     while (!stack.isEmpty()) {
       Node u = stack.pop();
-      if(!visited[u.name]){ // if explored[u] = false then
-          visited[u.name] = true;
+      if(!explored[u.name]){ // if explored[u] = false 
+          explored[u.name] = true;
       }
-  
       for (Node v : u.adjlist) {
         returnL.add(v);
       }
     }
-    //System.out.print(nodes);
     return returnL;
+  } // DFS() 
 
-  } // DFS()
 
   public void findConnectedComponents() {
     ArrayList<Node> firstNode;
@@ -77,7 +68,6 @@ public class Graph {
     ArrayList<Node> bNode;
     ArrayList<Node> changeList = new ArrayList<>();
     ArrayList<Node> returnList = new ArrayList<>();
-
 
     for(Node a : this.nodes){
       firstNode = DFS(a);
@@ -87,13 +77,13 @@ public class Graph {
       for(Node b : this.nodes){
         if(firstNode.contains(b)){
           aNode = DFS(b);
-
-          for(int i = 0; i < aNode.size();i++){
+          
+          for(int i = 0; i < aNode.size();++i){
             if(!changeList.contains(aNode)){
               changeList.add(aNode.get(i));
               bNode = DFS(aNode.get(i));
 
-              for(int q = 0; q<bNode.size(); q++){
+              for(int q = 0; q < bNode.size(); ++q){
                 changeList.add(bNode.get(q));
               }
             }
@@ -105,8 +95,9 @@ public class Graph {
           returnList.add(e);
        }
       }
-      for(int i = 0; i<returnList.size(); i++){
-        for(int l = i; l<returnList.size(); l++){
+      for(int i = 0; i < returnList.size(); ++i){
+        
+        for(int l = i; l<returnList.size(); ++l){
           if(returnList.get(i).name > returnList.get(l).name){
             returnList.set(i,returnList.get(i));
             returnList.set(l, returnList.get(l));
@@ -116,8 +107,6 @@ public class Graph {
       System.out.print(returnList + "\n");
       changeList.removeAll(changeList);
       returnList.removeAll(returnList);
-
     }
   }
-
 } // class Graph
