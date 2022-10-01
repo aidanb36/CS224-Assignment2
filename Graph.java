@@ -53,7 +53,7 @@ public class Graph {
    * @return
    */
   public ArrayList<Node> DFS(Node s) {
-    boolean[] visited = new  boolean[nodes.size()];
+    boolean[] visited = new  boolean[this.nodes.size() + 1];
     Stack<Node> stack = new Stack<Node>();
     stack.push(s); 
     System.out.print(s);
@@ -65,7 +65,7 @@ public class Graph {
           visited[u.name] = true;
       }
   
-      for (Node v : nodes) {
+      for (Node v : u.adjlist) {
         stack.add(v);
       }
     }
