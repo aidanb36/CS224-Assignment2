@@ -50,7 +50,8 @@ public class Main {
     G.addEdge(n11, n12);
     G.addEdge(n12, n13);
 
-    G.findConnectedComponents();
+    G.DFS(n13);
+    //G.findConnectedComponents();
   } // testOne()
 
   public static void testTwo() {
