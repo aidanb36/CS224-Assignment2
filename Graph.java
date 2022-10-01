@@ -82,6 +82,8 @@ public class Graph {
     ArrayList<Node> aNode;
     ArrayList<Node> bNode;
     ArrayList<Node> changeList = new ArrayList<>();
+    ArrayList<Node> returnList = new ArrayList<>();
+
 
     for(Node a : this.nodes){
       firstNode = DFS(a);
@@ -104,6 +106,23 @@ public class Graph {
           }
         }
       }
+      for(Node e: changeList){
+        if(!returnList.contains(e)){
+          returnList.add(e);
+       }
+      }
+      for(int i = 0; i<returnList.size(); i++){
+        for(int l = i; l<returnList.size(); l++){
+          if(returnList.get(i).name > returnList.get(l).name){
+            returnList.set(i,returnList.get(i));
+            returnList.set(l, returnList.get(l));
+          }
+        }
+      }
+      System.out.print(returnList + "\n");
+      changeList.removeAll(changeList);
+      returnList.removeAll(returnList);
+
     }
   }
 
