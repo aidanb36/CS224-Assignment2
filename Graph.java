@@ -3,9 +3,7 @@
 
 import java.util.ArrayList;
 import java.util.Stack;
-
 import javax.swing.event.ChangeEvent;
-
 import java.util.Queue;
 import java.util.LinkedList;
 
@@ -47,13 +45,15 @@ public class Graph {
     n1.addEdge(n2);
   }
 
+    //--------------------------------------------------------------------------
+
   /**
    * Need to ensure that the if statement and foreach is correct
    * @param s
    * @return
    */
   public ArrayList<Node> DFS(Node s) {
-    boolean[] visited = new  boolean[this.nodes.size() + 1];
+    boolean[] visited = new  boolean[nodes.size()];
     Stack<Node> stack = new Stack<Node>();
     stack.push(s); 
     System.out.print(s);
@@ -64,8 +64,8 @@ public class Graph {
       if(!visited[u.name]){ // if explored[u] = false then
           visited[u.name] = true;
       }
+      for (Node v : nodes) {
   
-      for (Node v : u.adjlist) {
         stack.add(v);
       }
     }
@@ -74,13 +74,14 @@ public class Graph {
 
   } // DFS()
 
+  //---------------------------------------------------------------------
+
   public void findConnectedComponents() {
     ArrayList<Node> firstNode;
     ArrayList<Node> aNode;
     ArrayList<Node> bNode;
     ArrayList<Node> changeList = new ArrayList<>();
     ArrayList<Node> returnList = new ArrayList<>();
-
 
     for(Node a : this.nodes){
       firstNode = DFS(a);
@@ -92,7 +93,7 @@ public class Graph {
           aNode = DFS(b);
 
           for(int i = 0; i < aNode.size();i++){
-            if(!changeList.contains(aNode)){
+            if(!(changeList.contains(aNode))){
               changeList.add(aNode.get(i));
               bNode = DFS(aNode.get(i));
 
@@ -122,5 +123,4 @@ public class Graph {
 
     }
   }
-
 } // class Graph
