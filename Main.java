@@ -3,7 +3,7 @@
 public class Main {
   public static void main(String args[]) {
     testOne();
-//  testTwo();
+    testTwo();
   }
 
   public static void testOne() {
@@ -51,7 +51,7 @@ public class Main {
     G.addEdge(n12, n13);
 
     G.DFS(n13);
-    //G.findConnectedComponents();
+    G.findConnectedComponents();
   } // testOne()
 
   public static void testTwo() {

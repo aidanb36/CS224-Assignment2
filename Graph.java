@@ -47,16 +47,13 @@ public class Graph {
     n1.addEdge(n2);
   }
 
-  /**
-   * Need to ensure that the if statement and foreach is correct
-   * @param s
-   * @return
-   */
+  
   public ArrayList<Node> DFS(Node s) {
     boolean[] visited = new  boolean[this.nodes.size() + 1];
     Stack<Node> stack = new Stack<Node>();
+    ArrayList<Node> returnL = new ArrayList<>();
+
     stack.push(s); 
-    System.out.print(s);
 
     // While the stack is not empty, pop a node from the stack
     while (!stack.isEmpty()) {
@@ -66,11 +63,11 @@ public class Graph {
       }
   
       for (Node v : u.adjlist) {
-        stack.add(v);
+        returnL.add(v);
       }
     }
-    System.out.print(nodes);
-    return nodes;
+    //System.out.print(nodes);
+    return returnL;
 
   } // DFS()
 
