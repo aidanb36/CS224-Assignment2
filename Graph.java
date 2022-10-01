@@ -1,4 +1,5 @@
 // CS224 Fall 2022
+// Aidan Brown and Aiden McCormack
 
 import java.util.ArrayList;
 import java.util.Stack;
@@ -65,16 +66,24 @@ public class Graph {
         stack.add(v);
       }
     }
+    System.out.print(nodes);
     return nodes;
 
   } // DFS()
 
   public void findConnectedComponents() {
-    for( int i = 0; i < nodes.size(); i++){
-      ArrayList<Node> newb=DFS(nodes.get(i));
+    // for( int i = 0; i < nodes.size(); i++){
+    //   ArrayList<Node> newb.push(nodes[i]);
+    // }
+    Stack<Node> stack;
+    for(Node e : nodes){
+      ArrayList<Node> newb = DFS(e);
       System.out.print(newb);
     }
-    
+
+    // for( int i = 0; i < nodes.size(); i++){
+    //   stack.add(nodes.get(i));
+    // }
     // implement this
   } // findConnectedComponents()
 } // class Graph
