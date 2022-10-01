@@ -3,6 +3,9 @@
 
 import java.util.ArrayList;
 import java.util.Stack;
+
+import javax.swing.event.ChangeEvent;
+
 import java.util.Queue;
 import java.util.LinkedList;
 
@@ -75,15 +78,33 @@ public class Graph {
     // for( int i = 0; i < nodes.size(); i++){
     //   ArrayList<Node> newb.push(nodes[i]);
     // }
-    Stack<Node> stack;
-    for(Node e : nodes){
-      ArrayList<Node> newb = DFS(e);
-      System.out.print(newb);
-    }
+    ArrayList<Node> firstNode;
+    ArrayList<Node> aNode;
+    ArrayList<Node> bNode;
+    ArrayList<Node> changeList = new ArrayList<>();
 
-    // for( int i = 0; i < nodes.size(); i++){
-    //   stack.add(nodes.get(i));
-    // }
-    // implement this
-  } // findConnectedComponents()
+    for(Node a : this.nodes){
+      firstNode = DFS(a);
+      changeList.add(a);
+      System.out.print("DFS("+a.name+")\n");
+
+      for(Node b : this.nodes){
+        if(firstNode.contains(b)){
+          aNode = DFS(b);
+
+          for(int i = 0; i < aNode.size();i++){
+            if(!changeList.contains(aNode)){
+              changeList.add(aNode.get(i));
+              bNode = DFS(aNode.get(i));
+
+              for(int q = 0; q<bNode.size(); q++){
+                changeList.add(bNode.get(q));
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
 } // class Graph
