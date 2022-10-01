@@ -75,9 +75,6 @@ public class Graph {
   } // DFS()
 
   public void findConnectedComponents() {
-    // for( int i = 0; i < nodes.size(); i++){
-    //   ArrayList<Node> newb.push(nodes[i]);
-    // }
     ArrayList<Node> firstNode;
     ArrayList<Node> aNode;
     ArrayList<Node> bNode;
